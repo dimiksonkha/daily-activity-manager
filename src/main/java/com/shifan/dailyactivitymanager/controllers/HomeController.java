@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  
 @Controller
 public class HomeController {
-    String message = "Welcome to Daily Activity Manager!"; 
+    String activityMessage = "Welcome to Daily Activity Manager!"; 
 
    
     @RequestMapping("/")
     public String showHomePage(Model model) {
       
         
-        model.addAttribute("message", message); 
+        model.addAttribute("message", activityMessage); 
      
         return "index";
                
