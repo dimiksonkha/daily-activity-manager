@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : Aug 6, 2021, 4:58:15 PM
-    Author     : Sulaiman
+    Author     : dimiksonkha
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +12,6 @@
         <title>Daily Activity Manager</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>${message}</h1>
     </body>
 </html>
