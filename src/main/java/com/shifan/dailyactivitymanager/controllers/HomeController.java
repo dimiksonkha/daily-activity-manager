@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  
 @Controller
 public class HomeController {
-    String message = "Hello World"; 
+    String message = "Welcome to Daily Activity Manager!"; 
 
    
     @RequestMapping("/")
