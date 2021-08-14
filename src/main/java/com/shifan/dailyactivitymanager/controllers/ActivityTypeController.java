@@ -7,6 +7,8 @@ package com.shifan.dailyactivitymanager.controllers;
 
 import com.shifan.dailyactivitymanager.models.ActivityType;
 import com.shifan.dailyactivitymanager.services.ActivityTypeService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ActivityTypeController {
 	
 	private ActivityTypeService activityTypeService;
+        
 	
 	@Autowired(required=true)
 	@Qualifier(value = "activityTypeService")
@@ -42,11 +45,18 @@ public class ActivityTypeController {
 	@RequestMapping(value= "/activityType/add", method = RequestMethod.POST)
 	public String addActivityType(@ModelAttribute("activityType") ActivityType activityType ){
 		
+                
+   
 		if(activityType.getId() == 0){
 			//new activityType, add it
+                        activityType.setCreatedDate(getCurrentDateTime());
+                        activityType.setLastUpdateDate(getCurrentDateTime());
+                        
 			this.activityTypeService.addActivityType(activityType);
 		}else{
 			//existing activityType, call update
+                        //activityType.setLastUpdateDate(activityType.getCreatedDate());
+                        activityType.setLastUpdateDate(getCurrentDateTime());
 			this.activityTypeService.updateActivityType(activityType);
 		}
 		
@@ -54,7 +64,7 @@ public class ActivityTypeController {
 		
 	}
 	
-	@RequestMapping("/remove/{id}")
+    @RequestMapping("/remove/{id}")
     public String removeActivityType(@PathVariable("id") int id){
 		
         this.activityTypeService.removeActivityType(id);
@@ -63,9 +73,16 @@ public class ActivityTypeController {
  
     @RequestMapping("/edit/{id}")
     public String editActivityType(@PathVariable("id") int id, Model model){
+       
         model.addAttribute("activityType", this.activityTypeService.getActivityTypeById(id));
         model.addAttribute("listActivityTypes", this.activityTypeService.listActivityTypes());
         return "activityType";
+    }
+    
+    private String getCurrentDateTime(){
+        Date now = new Date( );
+        SimpleDateFormat ft = new SimpleDateFormat ("yyyy.MM.dd hh:mm:ss ");
+        return ft.format(now);
     }
 	
 }

@@ -1,0 +1,8 @@
+com/shifan/dailyactivitymanager/dao/ActivityTypeDAOImpl.class
+com/shifan/dailyactivitymanager/services/ActivityTypeService.class
+com/shifan/dailyactivitymanager/dao/ActivityTypeDAO.class
+com/shifan/dailyactivitymanager/controllers/ActivityTypeController.class
+com/shifan/dailyactivitymanager/controllers/HomeController.class
+com/shifan/dailyactivitymanager/services/ActivityTypeServiceImpl.class
+com/shifan/dailyactivitymanager/models/Activity.class
+com/shifan/dailyactivitymanager/models/ActivityType.class

@@ -29,8 +29,10 @@ public class ActivityType {
     
     private boolean isActive;
     
+    @Column(columnDefinition = "DATETIME")
     private String createdDate;
     
+    @Column(columnDefinition = "DATETIME")
     private String lastUpdateDate; 
 
     public int getId() {
