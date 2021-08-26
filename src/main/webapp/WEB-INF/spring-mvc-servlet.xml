@@ -46,7 +46,8 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.shifan.dailyactivitymanager.models.ActivityType</value>
+				<value>com.shifan.dailyactivitymanager.models.Activity</value>
+                                <value>com.shifan.dailyactivitymanager.models.ActivityType</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -56,10 +57,16 @@
 			</props>
 		</property>
 	</bean>
+        <bean id="activityDAO" class="com.shifan.dailyactivitymanager.dao.ActivityDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
         <bean id="activityTypeDAO" class="com.shifan.dailyactivitymanager.dao.ActivityTypeDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
-        <bean id="activityTypeService" class="com.shifan.dailyactivitymanager.services.ActivityTypeServiceImpl">
+        <bean id="activityService" class="com.shifan.dailyactivitymanager.services.ActivityServiceImpl">
+		<property name="activityDAO" ref="activityDAO"></property>
+	</bean>
+         <bean id="activityTypeService" class="com.shifan.dailyactivitymanager.services.ActivityTypeServiceImpl">
 		<property name="activityTypeDAO" ref="activityTypeDAO"></property>
 	</bean>
         <tx:annotation-driven transaction-manager="transactionManager"/>

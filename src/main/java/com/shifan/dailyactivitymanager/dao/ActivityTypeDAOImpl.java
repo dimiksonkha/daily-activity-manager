@@ -44,7 +44,7 @@ public class ActivityTypeDAOImpl implements ActivityTypeDAO{
         Session session = this.sessionFactory.getCurrentSession();
 		List<ActivityType> activityTypeList = session.createQuery("from ActivityType").list();
 		for(ActivityType activityType : activityTypeList){
-			logger.info("ActivityTypeList List::"+activityType);
+			logger.info("ActivityType List::"+activityType);
 		}
 		return activityTypeList;
     }

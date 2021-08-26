@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 
 /**
  *
- * @author ayaan
+ * @author dimiksonkha
  */
 public class ActivityTypeServiceImpl implements ActivityTypeService{
 

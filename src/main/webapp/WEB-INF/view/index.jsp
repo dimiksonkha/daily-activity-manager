@@ -13,5 +13,9 @@
     </head>
     <body>
         <h1>${message}</h1>
+        <a href="/DailyActivityManager/activities">Activity </a>
+        <br>
+        <a href="/DailyActivityManager/activityTypes">Activity Types</a>
+        
     </body>
 </html>
