@@ -5,11 +5,13 @@
  */
 package com.shifan.dailyactivitymanager.models;
 
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,9 +23,9 @@ import javax.persistence.Table;
 public class ActivityType {
     
     @Id
-    @Column(name="id")
+    @Column(name="activityTypeId")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id; 
+    private int activityTypeId; 
     
     private String activityTypeName;
     
@@ -34,13 +36,16 @@ public class ActivityType {
     
     @Column(columnDefinition = "DATETIME")
     private String lastUpdateDate; 
+    
+    @OneToMany(mappedBy="activityType")
+    private Set<Activity> activity;
 
-    public int getId() {
-        return id;
+    public int getActivityTypeId() {
+        return activityTypeId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setActivityTypeId(int activityTypeId) {
+        this.activityTypeId = activityTypeId;
     }
 
     public String getActivityTypeName() {
@@ -75,8 +80,18 @@ public class ActivityType {
         this.lastUpdateDate = lastUpdateDate;
     }
 
+    public Set<Activity> getActivity() {
+        return activity;
+    }
 
+    public void setActivity(Set<Activity> activity) {
+        this.activity = activity;
+    }
 
- 
+    public int activityTypeId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
     
 }

@@ -19,13 +19,13 @@
 	<c:if test="${!empty activityType.activityTypeName}">
 	<tr>
 		<td>
-			<form:label path="id">
+			<form:label path="activityTypeId">
 				<spring:message text="ID"/>
 			</form:label>
 		</td>
 		<td>
-			<form:input path="id" readonly="true" size="8"  disabled="true" />
-			<form:hidden path="id" />
+			<form:input path="activityTypeId" readonly="true" size="8"  disabled="true" />
+			<form:hidden path="activityTypeId" />
 		</td> 
 	</tr>
 	</c:if>
@@ -85,10 +85,10 @@
 	</tr>
 	<c:forEach items="${listActivityTypes}" var="ActivityType">
 		<tr>
-			<td>${ActivityType.id}</td>
+			<td>${ActivityType.activityTypeId}</td>
 			<td>${ActivityType.activityTypeName}</td>
-			<td><a href="<c:url value='/edit/${ActivityType.id}' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/${ActivityType.id}' />" >Delete</a></td>
+			<td><a href="<c:url value='/edit/${ActivityType.activityTypeId}' />" >Edit</a></td>
+			<td><a href="<c:url value='/remove/${ActivityType.activityTypeId}' />" >Delete</a></td>
 		</tr>
 	</c:forEach>
 	</table>

@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,10 +28,12 @@ public class Activity {
 private int id;
 
 private String   activityName;
-//private ActivityType activityType;
-private String activityType;
+
+@ManyToOne
+@JoinColumn(name="activityTypeId")
+private ActivityType activityType;
+
 private String activityDescription;
-private String activityDateTime;
 private Double activityDuration;
 private boolean isActive;
 
@@ -40,7 +44,7 @@ private String createdDate;
 @Column(columnDefinition = "DATETIME")
 private String activityLastUpdateDate;
 
- public int getId() {
+    public int getId() {
         return id;
     }
 
@@ -56,19 +60,11 @@ private String activityLastUpdateDate;
         this.activityName = activityName;
     }
 
-//    public ActivityType getActivityType() {
-//        return activityType;
-//    }
-//
-//    public void setActivityType(ActivityType activityType) {
-//        this.activityType = activityType;
-//    }
-    
-     public String getActivityType() {
+    public ActivityType getActivityType() {
         return activityType;
     }
 
-    public void setActivityType(String activityType) {
+    public void setActivityType(ActivityType activityType) {
         this.activityType = activityType;
     }
 
@@ -80,14 +76,7 @@ private String activityLastUpdateDate;
         this.activityDescription = activityDescription;
     }
 
-    public String getActivityDateTime() {
-        return activityDateTime;
-    }
-
-    public void setActivityDateTime(String activityDateTime) {
-        this.activityDateTime = activityDateTime;
-    }
-
+   
     public Double getActivityDuration() {
         return activityDuration;
     }
@@ -119,6 +108,8 @@ private String activityLastUpdateDate;
     public void setActivityLastUpdateDate(String activityLastUpdateDate) {
         this.activityLastUpdateDate = activityLastUpdateDate;
     }
+
+
 
     
 }

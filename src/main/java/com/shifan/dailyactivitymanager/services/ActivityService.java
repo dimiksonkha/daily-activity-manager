@@ -6,6 +6,7 @@
 package com.shifan.dailyactivitymanager.services;
 
 import com.shifan.dailyactivitymanager.models.Activity;
+import com.shifan.dailyactivitymanager.models.ActivityType;
 import java.util.List;
 
 /**

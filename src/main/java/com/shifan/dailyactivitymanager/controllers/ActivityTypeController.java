@@ -47,7 +47,7 @@ public class ActivityTypeController {
 		
                 
    
-		if(activityType.getId() == 0){
+		if(activityType.getActivityTypeId() == 0){
 			//new activityType, add it
                         activityType.setCreatedDate(getCurrentDateTime());
                         activityType.setLastUpdateDate(getCurrentDateTime());

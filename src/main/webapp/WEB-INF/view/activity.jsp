@@ -6,11 +6,8 @@
 <head>
 	<title>Activity Page </title>
 </head>
-<body>
-<h3>
-	Add an Activity
-        
-</h3>
+
+<h3>Add an Activity</h3>
 
 <c:url var="addAction" value="/activity/add" ></c:url>
 
@@ -27,8 +24,10 @@
 			<form:input path="id" readonly="true" size="8"  disabled="true" />
 			<form:hidden path="id" />
 		</td> 
+                
 	</tr>
 	</c:if>
+    
 	<tr>
 		<td>
 			<form:label path="activityName">
@@ -37,6 +36,30 @@
 		</td>
 		<td>
 			<form:input path="activityName" />
+		</td> 
+	</tr>
+        <tr>
+            <td>
+			<form:label path="activityType">
+				<spring:message text="Activity Type"/>
+			</form:label>
+		</td>
+            <td>
+                	<form:select path="activityType">    
+		         <c:forEach items="${listActivityTypes}" var="activityType">
+			 <option value="${activityType.activityTypeId}">${activityType.activityTypeName}</option>
+			 </c:forEach>
+		        </form:select>
+            </td>
+        </tr>
+        <tr>
+		<td>
+			<form:label path="activityDescription">
+				<spring:message text="Activity Description"/>
+			</form:label>
+		</td>
+		<td>
+			<form:textarea path="activityDescription" />
 		</td> 
 	</tr>
         
@@ -89,7 +112,7 @@
 		<tr>
 			<td>${Activity.id}</td>
 			<td>${Activity.activityName}</td>
-                        <td>${Activity.activityType}</td>
+                        <td>${Activity.activityType.activityTypeName}</td>
 			<td>${Activity.activityDescription}</td>
 			<td><a href="<c:url value='activity/edit/${Activity.id}' />" >Edit</a></td>
 			<td><a href="<c:url value='activity/remove/${Activity.id}' />" >Delete</a></td>
@@ -97,5 +120,5 @@
 	</c:forEach>
 	</table>
 </c:if> 
-</body>
+
 </html>

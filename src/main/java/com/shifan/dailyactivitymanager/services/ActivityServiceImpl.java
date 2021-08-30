@@ -7,6 +7,7 @@ package com.shifan.dailyactivitymanager.services;
 
 import com.shifan.dailyactivitymanager.dao.ActivityDAO;
 import com.shifan.dailyactivitymanager.models.Activity;
+import com.shifan.dailyactivitymanager.models.ActivityType;
 import java.util.List;
 import javax.transaction.Transactional;
 
@@ -53,6 +54,7 @@ public class ActivityServiceImpl implements ActivityService{
         this.activityDAO.removeActivity(id);
     }
 
+   
 	
 
 	

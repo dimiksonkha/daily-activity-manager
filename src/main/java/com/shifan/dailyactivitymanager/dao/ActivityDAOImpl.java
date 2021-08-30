@@ -6,6 +6,7 @@
 package com.shifan.dailyactivitymanager.dao;
 
 import com.shifan.dailyactivitymanager.models.Activity;
+import com.shifan.dailyactivitymanager.models.ActivityType;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -43,7 +44,7 @@ public class ActivityDAOImpl implements ActivityDAO{
         Session session = sessionFactory.getCurrentSession();
         List<Activity> activityList = session.createQuery("from Activity").list();
         for(Activity activity: activityList){
-            logger.info("ActivityType List::"+activity);
+            logger.info("Activity List::"+activity);
         }
         
         return activityList;

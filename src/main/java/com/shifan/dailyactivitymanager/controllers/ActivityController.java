@@ -6,13 +6,18 @@
 package com.shifan.dailyactivitymanager.controllers;
 
 import com.shifan.dailyactivitymanager.models.Activity;
+import com.shifan.dailyactivitymanager.models.ActivityType;
 import com.shifan.dailyactivitymanager.services.ActivityService;
+import com.shifan.dailyactivitymanager.services.ActivityTypeService;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ActivityController {
 	
 	private ActivityService activityService;
+        private ActivityTypeService activityTypeService;
         
 	
 	@Autowired(required=true)
@@ -33,22 +39,35 @@ public class ActivityController {
 	public void setActivityService(ActivityService activityService){
 		this.activityService = activityService;
 	}
+        
+        @Autowired(required=true)
+	@Qualifier(value = "activityTypeService")
+	public void setActivityTypeService(ActivityTypeService activityTypeService){
+		this.activityTypeService = activityTypeService;
+	}
 	
 	@RequestMapping(value = "/activities", method = RequestMethod.GET)
-	public String listActivitys(Model model) {
+	public String listActivites(Model model) {
+           
+                
+               
+            
 		model.addAttribute("activity", new Activity());
 		model.addAttribute("listActivites", this.activityService.listActivites());
+                model.addAttribute("listActivityTypes", this.activityTypeService.listActivityTypes());
+                
 		return "activity";
 	}
 	
 	//For add and update activity both
 	@RequestMapping(value= "/activity/add", method = RequestMethod.POST)
-	public String addActivity(@ModelAttribute("activity") Activity activity ){
+	public String addActivity(@ModelAttribute("activity") Activity activity, BindingResult result){
 		
                 
    
 		if(activity.getId() == 0){
-			//new activity, add it
+			
+                       
                         activity.setCreatedDate(getCurrentDateTime());
                         activity.setActivityLastUpdateDate(getCurrentDateTime());
                         
