@@ -45,7 +45,7 @@
 			</form:label>
 		</td>
             <td>
-                	<form:select path="activityType">    
+                	<form:select path="activityType.activityTypeId">    
 		         <c:forEach items="${listActivityTypes}" var="activityType">
 			 <option value="${activityType.activityTypeId}">${activityType.activityTypeName}</option>
 			 </c:forEach>

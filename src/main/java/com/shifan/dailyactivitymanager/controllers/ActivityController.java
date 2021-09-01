@@ -66,8 +66,7 @@ public class ActivityController {
                 
    
 		if(activity.getId() == 0){
-			
-                       
+                    
                         activity.setCreatedDate(getCurrentDateTime());
                         activity.setActivityLastUpdateDate(getCurrentDateTime());
                         
