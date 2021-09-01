@@ -85,11 +85,11 @@
 	<tr>
 		<td colspan="2">
 			<c:if test="${!empty activity.activityName}">
-				<input type="submit"
+				<input type="submit" id="editActivity"
 					value="<spring:message text="Edit Activity"/>" />
 			</c:if>
 			<c:if test="${empty activity.activityName}">
-				<input type="submit"
+				<input type="submit" id="addActivity"
 					value="<spring:message text="Add Activity"/>" />
 			</c:if>
 		</td>
