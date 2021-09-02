@@ -46,17 +46,17 @@ public class ActivityController {
 		this.activityTypeService = activityTypeService;
 	}
 	
-	@RequestMapping(value = "/activities", method = RequestMethod.GET)
+	@RequestMapping(value = "/activityList", method = RequestMethod.GET)
 	public String listActivites(Model model) {
-           
-                
                
+                String start ="2021-08-31";
+                String end = "2021-09-02";
             
 		model.addAttribute("activity", new Activity());
-		model.addAttribute("listActivites", this.activityService.listActivites());
+		model.addAttribute("listActivites", this.activityService.listActivites(start, end));
                 model.addAttribute("listActivityTypes", this.activityTypeService.listActivityTypes());
                 
-		return "activity";
+		return "activityList";
 	}
 	
 	//For add and update activity both
@@ -78,22 +78,29 @@ public class ActivityController {
 			this.activityService.updateActivity(activity);
 		}
 		
-		return "redirect:/activities";
+		return "redirect:/activityList";
 		
 	}
+        
+    @RequestMapping("/activity")
+    public String activityAddForm(@ModelAttribute("activity") Activity activity, Model model){
+    model.addAttribute("listActivityTypes", this.activityTypeService.listActivityTypes());    
+    return "activity";
+    }
 	
     @RequestMapping("activity/remove/{id}")
     public String removeActivity(@PathVariable("id") int id){
 		
         this.activityService.removeActivity(id);
-        return "redirect:/activities";
+        return "redirect:/activityList";
     }
  
     @RequestMapping("activity/edit/{id}")
     public String editActivity(@PathVariable("id") int id, Model model){
-       
+        
         model.addAttribute("activity", this.activityService.getActivityById(id));
-        model.addAttribute("listActivitys", this.activityService.listActivites());
+        model.addAttribute("listActivityTypes", this.activityTypeService.listActivityTypes());
+      
         return "activity";
     }
     

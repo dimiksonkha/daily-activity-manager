@@ -37,8 +37,8 @@ public class ActivityServiceImpl implements ActivityService{
     }
     @Transactional 
     @Override
-    public List<Activity> listActivites() {
-        return this.activityDAO.listActivites();
+    public List<Activity> listActivites(String start, String end) {
+        return this.activityDAO.listActivites(start, end);
          
     }
 

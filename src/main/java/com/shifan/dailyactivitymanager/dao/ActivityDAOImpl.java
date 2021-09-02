@@ -7,9 +7,15 @@ package com.shifan.dailyactivitymanager.dao;
 
 import com.shifan.dailyactivitymanager.models.Activity;
 import com.shifan.dailyactivitymanager.models.ActivityType;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,9 +46,20 @@ public class ActivityDAOImpl implements ActivityDAO{
             }
 
     @Override
-    public List<Activity> listActivites() {
+    public List<Activity> listActivites(String start, String end) {
         Session session = sessionFactory.getCurrentSession();
-        List<Activity> activityList = session.createQuery("from Activity").list();
+//       Criteria query = session.createCriteria(Activity.class);
+//       query.add(Restrictions.like("createdDate","2021-09-02",MatchMode.START));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       
+        String startDate = start+" "+"00:00:00";
+        String endDate = end+" "+"23:59:59";
+        String hql = "from Activity where createdDate between :startDate and :endDate ";
+        
+        List<Activity> activityList = session.createQuery(hql)
+             .setParameter("startDate", startDate)
+             .setParameter("endDate", endDate)
+             .list();
         for(Activity activity: activityList){
             logger.info("Activity List::"+activity);
         }
