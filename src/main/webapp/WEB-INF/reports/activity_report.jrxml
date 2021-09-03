@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="800" pageHeight="842" columnWidth="760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="872884a2-3331-41ba-aad2-9655b3cdcc60">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="755"/>
+	<property name="ireport.y" value="115"/>
+	<queryString language="SQL">
+		<![CDATA[select ACTIVITY.createdDate, ACTIVITY.activityName, ACTIVITY_TYPE.activityTypeName, ACTIVITY.activityDescription from ACTIVITY left join ACTIVITY_TYPE on ACTIVITY.activityTypeId = ACTIVITY_TYPE.activityTypeId order by ACTIVITY.id;]]>
+	</queryString>
+	<field name="createdDate" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="activityName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="activityTypeName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="activityDescription" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="800" height="92" backcolor="#006699" uuid="19feb88b-02d1-4d8e-97fd-7da3f38b9967"/>
+				<staticText>
+					<reportElement x="275" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="d0e2d267-d6d7-4830-a85d-200f1c6a4c45"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Activity Report]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25">
+			<line>
+				<reportElement x="0" y="20" width="760" height="4" forecolor="#666666" uuid="1c54945c-f35d-43a4-86d6-6362c8aee44a"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d1c50980-ab10-46a9-9ef7-a3674a70af17"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Activity Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="14b7f337-0782-435a-851b-804a9807902c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Activity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="1" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f09e9308-3765-419f-9285-dd5c3e660996"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Activity Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="414" y="2" width="346" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7c6172c5-3359-4088-8f83-c7a4e3681205"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="20" width="760" height="1" uuid="6e2794e5-0813-4e1b-8ed8-2530787af579"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="138" y="1" width="138" height="20" uuid="bdacd6f9-080e-4e1d-ac07-f3a5d5ca82ed"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{activityName}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="414" y="1" width="346" height="20" uuid="9668756c-c08a-41b1-8755-9411c7a8bb0f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{activityDescription}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="1" width="138" height="20" uuid="62a69d35-f21a-42f2-89a9-7ec2b8c98788"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{createdDate}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="1" width="138" height="20" uuid="0b0e6e8a-e071-438d-bd0f-be43e94376cf"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{activityTypeName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="3c92406a-8047-4db8-aec1-80d32332bdd3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="8396a1b5-da7a-4ea9-9f27-30e8dec5cd40"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="e5689fe2-367c-4814-989f-5a9c0530398b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
