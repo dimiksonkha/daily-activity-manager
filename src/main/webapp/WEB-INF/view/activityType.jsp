@@ -8,9 +8,10 @@
 </head>
 <body>
 <h3>
-	Add an Activity Type
+	Activity Type
         
 </h3>
+    <a href="/DailyActivityManager/">Home</a><a href="/DailyActivityManager/activityList">Activity List</a><a href="/DailyActivityManager/activityTypeList">Activity Type List</a>
 
 <c:url var="addAction" value="/activityType/add" ></c:url>
 
@@ -73,25 +74,6 @@
 	</tr>
 </table>	
 </form:form>
-<br>
-<h3>Activity Type List</h3>
-<c:if test="${!empty listActivityTypes}">
-	<table class="tg">
-	<tr>
-		<th width="80">ActivityType ID</th>
-		<th width="120">ActivityType Name</th>
-		<th width="60">Edit</th>
-		<th width="60">Delete</th>
-	</tr>
-	<c:forEach items="${listActivityTypes}" var="ActivityType">
-		<tr>
-			<td>${ActivityType.activityTypeId}</td>
-			<td>${ActivityType.activityTypeName}</td>
-			<td><a href="<c:url value='/edit/${ActivityType.activityTypeId}' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/${ActivityType.activityTypeId}' />" >Delete</a></td>
-		</tr>
-	</c:forEach>
-	</table>
-</c:if> 
+
 </body>
 </html>

@@ -7,74 +7,13 @@
 	<title>Activity Type Page </title>
 </head>
 <body>
+    <a href="/DailyActivityManager/">Home</a><a href="/DailyActivityManager/activityList">Activity List</a><a href="/DailyActivityManager/activityTypeList">Activity Type List</a>
 <h3>
-	Add an Activity Type
+	Activity Type List
         
 </h3>
 
-<c:url var="addAction" value="/activityType/add" ></c:url>
-
-<form:form action="${addAction}" commandName="activityType">
-<table>
-	<c:if test="${!empty activityType.activityTypeName}">
-	<tr>
-		<td>
-			<form:label path="activityTypeId">
-				<spring:message text="ID"/>
-			</form:label>
-		</td>
-		<td>
-			<form:input path="activityTypeId" readonly="true" size="8"  disabled="true" />
-			<form:hidden path="activityTypeId" />
-		</td> 
-	</tr>
-	</c:if>
-	<tr>
-		<td>
-			<form:label path="activityTypeName">
-				<spring:message text="ActivityType Name"/>
-			</form:label>
-		</td>
-		<td>
-			<form:input path="activityTypeName" />
-		</td> 
-	</tr>
-        
-        <tr>
-		<td>
-			<form:label path="isActive">
-				<spring:message text="isActive"/>
-			</form:label>
-		</td>
-		<td>
-			<form:checkbox path="isActive" />
-		</td> 
-	</tr>
-       
-        
-        <tr>
-		
-                <td>
-			<form:hidden path="createdDate" />
-		</td> 
-	</tr>
-	
-	<tr>
-		<td colspan="2">
-			<c:if test="${!empty activityType.activityTypeName}">
-				<input type="submit"
-					value="<spring:message text="Edit ActivityType"/>" />
-			</c:if>
-			<c:if test="${empty activityType.activityTypeName}">
-				<input type="submit"
-					value="<spring:message text="Add ActivityType"/>" />
-			</c:if>
-		</td>
-	</tr>
-</table>	
-</form:form>
-<br>
-<h3>Activity Type List</h3>
+<a href="/DailyActivityManager/activityType">New Activity Type</a>
 <c:if test="${!empty listActivityTypes}">
 	<table class="tg">
 	<tr>

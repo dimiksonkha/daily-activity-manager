@@ -6,8 +6,9 @@
 <head>
 	<title>Activity Page </title>
 </head>
+<a href="/DailyActivityManager/">Home</a><a href="/DailyActivityManager/activityList">Activity List</a><a href="/DailyActivityManager/activityTypeList">Activity Type List</a>
 
-<h3>Add an Activity</h3>
+<h3>Activity</h3>
 
 <c:url var="addAction" value="/activity/add" ></c:url>
 

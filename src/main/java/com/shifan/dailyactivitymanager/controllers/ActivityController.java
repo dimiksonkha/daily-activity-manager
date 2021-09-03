@@ -11,6 +11,7 @@ import com.shifan.dailyactivitymanager.services.ActivityService;
 import com.shifan.dailyactivitymanager.services.ActivityTypeService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -46,12 +48,25 @@ public class ActivityController {
 		this.activityTypeService = activityTypeService;
 	}
 	
-	@RequestMapping(value = "/activityList", method = RequestMethod.GET)
+	
+        @RequestMapping(value = "/activityList/search", method = RequestMethod.GET)
+	public String searchActivity(@RequestParam("startDate") String startDate,@RequestParam("endDate") String endDate,Model model) {
+               
+                   
+		model.addAttribute("activity", new Activity());
+		model.addAttribute("listActivites", this.activityService.listActivites(startDate, endDate));
+                model.addAttribute("listActivityTypes", this.activityTypeService.listActivityTypes());
+                
+		return "activityList";
+	}
+        @RequestMapping(value = "/activityList", method = RequestMethod.GET)
 	public String listActivites(Model model) {
                
-                String start ="2021-08-31";
-                String end = "2021-09-02";
-            
+                String start =getSevenDaysEearlierFromCurrentDate();
+                String end = getCurrentDate();
+                
+                model.addAttribute("startDate", start);
+                model.addAttribute("endDate", end);
 		model.addAttribute("activity", new Activity());
 		model.addAttribute("listActivites", this.activityService.listActivites(start, end));
                 model.addAttribute("listActivityTypes", this.activityTypeService.listActivityTypes());
@@ -73,7 +88,6 @@ public class ActivityController {
 			this.activityService.addActivity(activity);
 		}else{
 			//existing activity, call update
-                        //activity.setLastUpdateDate(activity.getCreatedDate());
                         activity.setActivityLastUpdateDate(getCurrentDateTime());
 			this.activityService.updateActivity(activity);
 		}
@@ -108,6 +122,23 @@ public class ActivityController {
         Date now = new Date( );
         SimpleDateFormat ft = new SimpleDateFormat ("yyyy.MM.dd hh:mm:ss ");
         return ft.format(now);
+    }
+    
+    private String getCurrentDate(){
+        Date now = new Date( );
+        SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
+        return ft.format(now);
+    }
+    
+     private String getSevenDaysEearlierFromCurrentDate(){
+         
+        Date now = new Date( );
+        SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -7);
+        Date temp = cal.getTime();    
+        String fromdate = ft.format(temp);
+        return fromdate;
     }
 	
 }

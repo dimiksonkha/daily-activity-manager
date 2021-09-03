@@ -34,11 +34,11 @@ public class ActivityTypeController {
 		this.activityTypeService = activityTypeService;
 	}
 	
-	@RequestMapping(value = "/activityTypes", method = RequestMethod.GET)
+	@RequestMapping(value = "/activityTypeList", method = RequestMethod.GET)
 	public String listActivityTypes(Model model) {
 		model.addAttribute("activityType", new ActivityType());
 		model.addAttribute("listActivityTypes", this.activityTypeService.listActivityTypes());
-		return "activityType";
+		return "activityTypeList";
 	}
 	
 	//For add and update activityType both
@@ -60,7 +60,16 @@ public class ActivityTypeController {
 			this.activityTypeService.updateActivityType(activityType);
 		}
 		
-		return "redirect:/activityTypes";
+		return "redirect:/activityTypeList";
+		
+	}
+        
+        //For add and update activityType both
+	@RequestMapping(value= "/activityType")
+	public String addActivityTypeForm(@ModelAttribute("activityType") ActivityType activityType ){
+		
+		
+		return "activityType";
 		
 	}
 	
@@ -68,7 +77,7 @@ public class ActivityTypeController {
     public String removeActivityType(@PathVariable("id") int id){
 		
         this.activityTypeService.removeActivityType(id);
-        return "redirect:/activityTypes";
+        return "redirect:/activityTypeList";
     }
  
     @RequestMapping("/edit/{id}")
